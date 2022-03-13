@@ -30,19 +30,29 @@ jobs:
         run: |
           lux https://www.douyin.com/video/7024851426333527333
           sudo tar -zcvf resource.tar.gz ./*
-          sudo cp -r resource.tar.gz /home/
           printf "\e[0;32m%s\e[0;0m\n" "(ls -al)"
           ls -al
           printf "\e[0;32m%s\e[0;0m\n" "(pwd)"
           pwd
 
-      - name: Uploading assets...
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
         id: upload-release-asset 
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: /home
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./resource.tar.gz
           asset_name: resource.tar.gz
           asset_content_type: application/zip
