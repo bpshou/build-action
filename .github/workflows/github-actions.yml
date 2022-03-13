@@ -11,9 +11,10 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get -y install \
-            curl
-          pwd
-          whoami
+            curl \
+            openssl
+          printf "\e[0;36m%s\e[0;0m\n" pwd
+          printf "\e[0;36m%s\e[0;0m\n" whoami
 
       - name: Download lux
         run: |
