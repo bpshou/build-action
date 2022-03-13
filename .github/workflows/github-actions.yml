@@ -22,7 +22,7 @@ jobs:
 
       - name: Compile Build
         run: |
-          tar -zxvf /home/src/lux_0.13.0_Linux_64-bit.tar.gz -C /usr/bin/
+          sudo tar -zxvf /home/src/lux_0.13.0_Linux_64-bit.tar.gz -C /usr/bin/
           sudo chmod +x /usr/bin/lux
           lux --version
           pwd
