@@ -12,7 +12,8 @@ jobs:
           sudo apt-get update
           sudo apt-get -y install \
             curl \
-            openssl
+            openssl \
+            zip
           printf "\e[0;36m%s\e[0;0m\n" pwd
           printf "\e[0;36m%s\e[0;0m\n" whoami
 
@@ -30,9 +31,9 @@ jobs:
       - name: Start jobs
         run: |
           lux https://www.douyin.com/video/7024851426333527333
-          sudo tar -zcvf resource.tar.gz ./*
+          sudo zip -r resource.zip ./*
           printf "\e[0;32m%s\e[0;0m\n" "Source build success"
-          openssl enc -aes-256-cbc -in resource.tar.gz -out resource.e.tar.gz -k 123456 -iv fbbe987afcc0b3787cefc0acb0969786 -a -nosalt -pbkdf2
+          openssl enc -aes-256-cbc -in resource.zip -out resource.e.zip -k 123456 -iv fbbe987afcc0b3787cefc0acb0969786 -a -nosalt -pbkdf2
           printf "\e[0;32m%s\e[0;0m\n" pwd
           ls -al
 
@@ -54,6 +55,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./resource.e.tar.gz
-          asset_name: resource.e.tar.gz
+          asset_path: ./resource.e.zip
+          asset_name: resource.e.zip
           asset_content_type: application/zip
