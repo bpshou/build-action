@@ -30,7 +30,7 @@ jobs:
 
       - name: Start jobs
         run: |
-          sudo sh ./douyin/download.sh
+          lux -F ./douyin/v1.0.0.txt
           sudo zip -r resource.zip ./*
           printf "\e[0;32m%s\e[0;0m\n" "Source build success"
           openssl enc -aes-256-cbc -in resource.zip -out resource.e.zip -k secret20 -iv fbbe987afcc0b3787cefc0acb0969786 -a -nosalt -pbkdf2
