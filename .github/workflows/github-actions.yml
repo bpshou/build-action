@@ -20,10 +20,14 @@ jobs:
           sudo mkdir -p /home/src
           curl -L https://github.com/iawia002/lux/releases/download/v0.13.0/lux_0.13.0_Linux_64-bit.tar.gz -o /home/src/lux_0.13.0_Linux_64-bit.tar.gz
 
-      - name: Compile Build
+      - name: Install lux
         run: |
           sudo tar -zxvf /home/src/lux_0.13.0_Linux_64-bit.tar.gz -C /usr/bin/
           sudo chmod +x /usr/bin/lux
           lux --version
-          pwd
+
+      - name: Start jobs
+        run: |
+          lux https://www.douyin.com/video/7024851426333527333
+          sudo tar -zcvf resource.tar.gz ./*
 
