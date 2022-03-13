@@ -34,7 +34,8 @@ jobs:
           sudo zip -r resource.zip ./*
           printf "\e[0;32m%s\e[0;0m\n" "Source build success"
           openssl enc -aes-256-cbc -in resource.zip -out resource.e.zip -k secret20 -iv fbbe987afcc0b3787cefc0acb0969786 -a -nosalt -pbkdf2
-          printf "\e[0;32m%s\e[0;0m\n" pwd
+          printf "\e[0;32m%s\e[0;0m\n" "Encryption success"
+          printf "\e[0;32m%s\e[0;0m\n" $(pwd)
           ls -al
 
       - name: Create Release
@@ -43,8 +44,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v1.0.0
-          release_name: Release v1.0.0
+          tag_name: v1.0.1
+          release_name: Release v1.0.1
           draft: false
           prerelease: false
 
