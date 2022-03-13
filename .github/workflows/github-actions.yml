@@ -14,8 +14,8 @@ jobs:
             curl \
             openssl \
             zip
-          printf "\e[0;36m%s\e[0;0m\n" pwd
-          printf "\e[0;36m%s\e[0;0m\n" whoami
+          printf "\e[0;36m%s\e[0;0m\n" $(pwd)
+          printf "\e[0;36m%s\e[0;0m\n" $(whoami)
 
       - name: Download lux
         run: |
@@ -44,8 +44,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v1.0.1
-          release_name: Release v1.0.1
+          tag_name: v1.0.0
+          release_name: Release v1.0.0
           draft: false
           prerelease: false
 
