@@ -31,13 +31,12 @@ jobs:
           lux https://www.douyin.com/video/7024851426333527333
           sudo tar -zcvf resource.tar.gz ./*
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@master
+      - name: Uploading assets...
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
+          asset_path: ./resource.tar.gz
+          asset_name: resource.tar.gz
+          asset_content_type: application/zip
