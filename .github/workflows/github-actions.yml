@@ -1,0 +1,29 @@
+name: github-actions
+on: [push]
+jobs:
+  build-gcc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set ubuntu
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install \
+            curl
+          pwd
+          whoami
+
+      - name: Download lux
+        run: |
+          sudo mkdir -p /home/src
+          curl -L https://github.com/iawia002/lux/releases/download/v0.13.0/lux_0.13.0_Linux_64-bit.tar.gz -o /home/src/lux_0.13.0_Linux_64-bit.tar.gz
+
+      - name: Compile Build
+        run: |
+          tar -zxvf /home/src/lux_0.13.0_Linux_64-bit.tar.gz -C /home/src
+          cd /home/src/lux_0.13.0_Linux_64-bit
+          ls -al
+          pwd
+
