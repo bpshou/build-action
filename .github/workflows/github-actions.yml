@@ -1,7 +1,5 @@
 name: github-actions
-on:
-  release:
-    types: created
+on: [push]
 jobs:
   AsyncAction:
     runs-on: ubuntu-latest
