@@ -31,6 +31,10 @@ jobs:
           lux https://www.douyin.com/video/7024851426333527333
           sudo tar -zcvf resource.tar.gz ./*
           sudo cp -r resource.tar.gz /home/
+          printf "\e[0;32m%s\e[0;0m\n" "(ls -al)"
+          ls -al
+          printf "\e[0;32m%s\e[0;0m\n" "(pwd)"
+          pwd
 
       - name: Uploading assets...
         id: upload-release-asset 
